@@ -1,4 +1,4 @@
-import Recipe from '../../models/Recipe';
+import Recipe from '../../models/Recipe.js';
 
 const deleteRecipe = async (req, res) => {
   const { recipeId } = req.params;
