@@ -5,6 +5,7 @@ import getLatestRecipes from '../apis/recipe/getLatestRecipes.js';
 import getRecipesByCategory from '../apis/recipe/getRecipesByCategory.js';
 import getRecipesByAuthor from '../apis/recipe/getRecipesByAuthor.js';
 import updateIngredients from '../apis/recipe/updateIngredients.js';
+import updateInstructions from '../apis/recipe/updateInstructions.js';
 
 const RecipeController = {
   getRecipeById,
@@ -14,6 +15,7 @@ const RecipeController = {
   getRecipesByCategory,
   getRecipesByAuthor,
   updateIngredients,
+  updateInstructions,
 };
 
 export default RecipeController;

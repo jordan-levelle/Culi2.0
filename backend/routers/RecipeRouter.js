@@ -5,6 +5,7 @@ import filterRecipesValidation from '../middlewares/recipe/filterRecipesValidati
 import recipeIDValidation from '../middlewares/recipe/recipeIDValidation.js';
 import createRecipeValidation from '../middlewares/recipe/createRecipeValidation.js';
 import updateIngredientsValidation from '../middlewares/recipe/updateIngredientsValidation.js';
+import updateInstructionsValidation from '../middlewares/recipe/updateInstructionsValidation.js';
 
 const router = express.Router();
 
@@ -37,6 +38,13 @@ router.patch(
   recipeIDValidation,
   updateIngredientsValidation,
   RecipeController.updateIngredients,
+);
+
+router.patch(
+  '/instructions/:recipeId',
+  recipeIDValidation,
+  updateInstructionsValidation,
+  RecipeController.updateInstructions,
 );
 
 export default router;
