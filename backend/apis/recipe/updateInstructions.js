@@ -19,6 +19,8 @@ const updateInstructions = async (req, res) => {
 
     recipe.instructions = instructions;
 
+    recipe.timestamp = Date.now();
+
     await recipe.save();
 
     res.status(200).json({ message: 'Instructions updated successfully!' });
