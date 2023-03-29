@@ -1,7 +1,7 @@
 import Recipe from '../../models/Recipe.js';
 
 const getRecipeById = async (req, res) => {
-  const { recipeId } = req.params;
+  const { recipeId } = req.body;
 
   try {
     const recipe = await Recipe.findById(recipeId)

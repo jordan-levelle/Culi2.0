@@ -1,7 +1,7 @@
 import Recipe from '../../models/Recipe.js';
 
 const deleteRecipe = async (req, res) => {
-  const { recipeId } = req.params;
+  const { recipeId } = req.body;
 
   try {
     await Recipe.findByIdAndDelete(recipeId);

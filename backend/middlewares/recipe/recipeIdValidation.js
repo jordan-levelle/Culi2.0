@@ -7,6 +7,8 @@ const recipeIDValidation = (req, res, next) => {
     return res.status(400).json({ message: 'Invalid recipe ID' });
   }
 
+  req.body.recipeId = recipeId;
+
   next();
 };
 
