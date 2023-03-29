@@ -2,7 +2,7 @@ import Recipe from '../../models/Recipe';
 import User from '../../models/User';
 
 const updateIngredients = async (req, res) => {
-  const { newIngredients, recipeId, userId } = req.body;
+  const { ingredients, recipeId, userId } = req.body;
 
   try {
     const user = await User.findById(userId);
@@ -17,7 +17,7 @@ const updateIngredients = async (req, res) => {
       return res.status(404).json({ message: 'Recipe not found!' });
     }
 
-    recipe.ingredients = newIngredients;
+    recipe.ingredients = ingredients;
 
     await recipe.save();
 
