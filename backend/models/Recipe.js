@@ -43,11 +43,11 @@ const RecipeSchema = new Schema({
     type: Schema.Types.ObjectId,
     ref: 'User',
   },
-  createdAt: {
+  timestamp: {
     type: Date,
     default: Date.now,
   },
-  numberOfLikes: {
+  numberOfFavorites: {
     type: Number,
     default: 0,
   },
