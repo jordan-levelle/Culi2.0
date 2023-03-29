@@ -1,4 +1,4 @@
-import Recipe from '../../models/Recipe';
+import Recipe from '../../models/Recipe.js';
 
 const getRecipesByAuthor = async (req, res) => {
   const { createdBy, page } = req.body;

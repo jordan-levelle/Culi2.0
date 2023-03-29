@@ -1,5 +1,5 @@
-import Recipe from '../../models/Recipe';
-import User from '../../models/User';
+import Recipe from '../../models/Recipe.js';
+import User from '../../models/User.js';
 
 const updateInstructions = async (req, res) => {
   const { instructions, recipeId, userId } = req.body;
@@ -18,6 +18,8 @@ const updateInstructions = async (req, res) => {
     }
 
     recipe.instructions = instructions;
+
+    recipe.timestamp = Date.now();
 
     await recipe.save();
 

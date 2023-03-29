@@ -1,5 +1,5 @@
 import validator from 'validator';
-import categories from '../../config/categories';
+import categories from '../../config/categories.js';
 
 const createRecipeValidation = (req, res, next) => {
   const { title, description, category } = req.body;
