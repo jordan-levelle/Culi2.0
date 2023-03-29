@@ -1,4 +1,4 @@
-import Recipe from '../../models/Recipe';
+import Recipe from '../../models/Recipe.js';
 
 const getRecipesByCategory = async (req, res) => {
   const { category, page } = req.body;

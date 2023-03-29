@@ -1,5 +1,5 @@
 import validator from 'validator';
-import units from '../../config/units';
+import units from '../../config/units.js';
 
 const updateIngredientsValidation = (req, res, next) => {
   const { ingredients } = req.body;

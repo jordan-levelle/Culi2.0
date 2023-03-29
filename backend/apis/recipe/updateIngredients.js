@@ -1,5 +1,5 @@
-import Recipe from '../../models/Recipe';
-import User from '../../models/User';
+import Recipe from '../../models/Recipe.js';
+import User from '../../models/User.js';
 
 const updateIngredients = async (req, res) => {
   const { ingredients, recipeId, userId } = req.body;
