@@ -4,6 +4,7 @@ import RecipeController from '../controllers/RecipeController.js';
 import filterRecipesValidation from '../middlewares/recipe/filterRecipesValidation.js';
 import recipeIDValidation from '../middlewares/recipe/recipeIDValidation.js';
 import createRecipeValidation from '../middlewares/recipe/createRecipeValidation.js';
+import updateIngredientsValidation from '../middlewares/recipe/updateIngredientsValidation.js';
 
 const router = express.Router();
 
@@ -31,6 +32,11 @@ router.post('/', createRecipeValidation, RecipeController.createRecipe);
 // This route needs Admin role
 router.delete('/:recipeId', recipeIDValidation, RecipeController.deleteRecipe);
 
-router.patch('/ingredients', RecipeController.updateIngredients);
+router.patch(
+  '/ingredients/:recipeId',
+  recipeIDValidation,
+  updateIngredientsValidation,
+  RecipeController.updateIngredients,
+);
 
 export default router;
