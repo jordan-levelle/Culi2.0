@@ -2,7 +2,7 @@ import express from 'express';
 import RecipeController from '../controllers/RecipeController.js';
 
 import filterRecipesValidation from '../middlewares/recipe/filterRecipesValidation.js';
-import recipeIDValidation from '../middlewares/recipe/recipeIDValidation.js';
+import recipeIdValidation from '../middlewares/recipe/recipeIdValidation.js';
 import createRecipeValidation from '../middlewares/recipe/createRecipeValidation.js';
 import updateIngredientsValidation from '../middlewares/recipe/updateIngredientsValidation.js';
 import updateInstructionsValidation from '../middlewares/recipe/updateInstructionsValidation.js';
@@ -23,7 +23,7 @@ router.get(
 
 router.get('/latest', RecipeController.getLatestRecipes);
 
-router.get('/:recipeId', recipeIDValidation, RecipeController.getRecipeById);
+router.get('/:recipeId', recipeIdValidation, RecipeController.getRecipeById);
 
 // This route needs complex validation logic and needs to upload images to S3 first in createRecipeMiddleware
 // At this stage we only need to make sure there's no script injection into the database
@@ -31,18 +31,18 @@ router.get('/:recipeId', recipeIDValidation, RecipeController.getRecipeById);
 router.post('/', createRecipeValidation, RecipeController.createRecipe);
 
 // This route needs Admin role
-router.delete('/:recipeId', recipeIDValidation, RecipeController.deleteRecipe);
+router.delete('/:recipeId', recipeIdValidation, RecipeController.deleteRecipe);
 
 router.patch(
   '/ingredients/:recipeId',
-  recipeIDValidation,
+  recipeIdValidation,
   updateIngredientsValidation,
   RecipeController.updateIngredients,
 );
 
 router.patch(
   '/instructions/:recipeId',
-  recipeIDValidation,
+  recipeIdValidation,
   updateInstructionsValidation,
   RecipeController.updateInstructions,
 );
