@@ -1,4 +1,4 @@
-import admin from '../../config/firebase.js';
+import decodeToken from "../../utils/decodeToken.js";
 
 const authMiddleware = async (req, res, next) => {
   const { token } = req.cookies;
@@ -8,7 +8,16 @@ const authMiddleware = async (req, res, next) => {
   }
 
   try {
-    const decodedToken = await admin.auth().verifyIdToken(token);
+    const decodedToken = await decodeToken(token);
+
+    if (!decodedToken) {
+      return res.status(401).json({ message: 'Invalid token!' });
+    }
+
+    if (!decodedToken.email_verified) {
+      return res.status(401).json({ message: 'User is not verified!' });
+    }
+
     req.uid = decodedToken.uid;
 
     next();

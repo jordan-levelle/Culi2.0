@@ -1,11 +1,34 @@
-const signInValidation = (req, res, next) => {
-  const { uid, username, email, profilePicture, token } = req.body;
+import decodeToken from '../../utils/decodeToken.js';
 
-  if (!uid || !username || !email || !profilePicture || !token) {
+const signInValidation = async (req, res, next) => {
+  const { token } = req.body;
+
+  if (!token) {
     return res.status(400).json({ message: 'Invalid user data!' });
   }
 
-  next();
+  try {
+    const decodedToken = await decodeToken(token);
+
+    if (!decodedToken) {
+      return res.status(400).json({ message: 'Invalid user data!' });
+    }
+
+    const user = {
+      uid: decodedToken.uid,
+      username: decodedToken.name,
+      email: decodedToken.email,
+      profilePicture: decodedToken.picture,
+      verified: decodedToken.email_verified,
+      token,
+    };
+
+    req.body.user = user;
+
+    next();
+  } catch (err) {
+    return res.status(500).json({ message: err.message });
+  }
 };
 
 export default signInValidation;
