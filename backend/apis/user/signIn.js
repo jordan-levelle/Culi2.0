@@ -1,7 +1,7 @@
 import User from '../../models/User.js';
 
 const signIn = async (req, res) => {
-  const { uid, username, email, profilePicture, token } = req.body;
+  const { uid, username, email, profilePicture, token } = req.body.user;
 
   try {
     const existingUser = await User.findOne({ uid });
@@ -16,7 +16,7 @@ const signIn = async (req, res) => {
     }
 
     res.cookie('token', token, { httpOnly: true });
-    res.status(200).json({ message: 'User signed in successfully!' });
+    res.status(200).json({ user: req.body.user });
   } catch (err) {
     res.status(500).json({ message: err.message });
   }
