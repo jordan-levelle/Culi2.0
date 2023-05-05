@@ -1,7 +1,7 @@
 import User from '../../models/User.js';
 
 const signIn = async (req, res) => {
-  const { uid, username, email, profilePicture, token } = req.body.user;
+  const { uid, token } = req.body.user;
 
   try {
     const existingUser = await User.findOne({ uid });
@@ -9,15 +9,13 @@ const signIn = async (req, res) => {
     if (!existingUser) {
       await User.create({
         uid,
-        username,
-        email,
-        profilePicture,
       });
     }
 
     res.cookie('token', token, { httpOnly: true });
     res.status(200).json({ user: req.body.user });
   } catch (err) {
+    console.error(err);
     res.status(500).json({ message: err.message });
   }
 };
