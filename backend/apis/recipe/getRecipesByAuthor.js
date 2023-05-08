@@ -1,10 +1,10 @@
 import Recipe from '../../models/Recipe.js';
 
 const getRecipesByAuthor = async (req, res) => {
-  const { createdBy, page } = req.body;
+  const { createdBy, category, page } = req.body;
 
   try {
-    const recipes = await Recipe.find({ createdBy })
+    const recipes = await Recipe.find({ createdBy, category })
       .select('title coverImage category numberOfFavorites createdAt createdBy')
       .populate('createdBy', 'username')
       .sort({ createdAt: -1 })
