@@ -16,6 +16,7 @@ const signInValidation = async (req, res, next) => {
 
     const user = {
       uid: decodedToken.uid,
+      provider: decodedToken.firebase.sign_in_provider,
       username: decodedToken.name,
       email: decodedToken.email,
       profilePicture: decodedToken.picture,
